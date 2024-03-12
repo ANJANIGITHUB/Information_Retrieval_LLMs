@@ -19,6 +19,7 @@ from nltk.stem import WordNetLemmatizer
 from nltk.probability import FreqDist
 from time import perf_counter
 import numpy as np
+import os
 
 
 #Define all the required function for reading PDFs and comparing
@@ -43,7 +44,7 @@ def compare_pdf_content(pdf1_text, pdf2_text):
     
     # Set up your OpenAI API key
 
-    openai.api_key = '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'
+    openai.api_key = os.environ.get("OPENAI_API_KEY")
     
     # Make a request to GPT-3
     response = openai.Completion.create(
