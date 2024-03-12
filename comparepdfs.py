@@ -44,7 +44,6 @@ def compare_pdf_content(pdf1_text, pdf2_text):
     load_dotenv()
     api_key=st.secrets["OPENAI_API_KEY"]
     # Set up your OpenAI API key
-    #openai.api_key = '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'
     openai.api_key = api_key
     
     # Make a request to GPT-3
