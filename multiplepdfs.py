@@ -34,6 +34,7 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
 from time import perf_counter
 import numpy as np
+import nltkmodules
 
 #import comparepdfs
 
