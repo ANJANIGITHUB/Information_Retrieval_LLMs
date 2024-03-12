@@ -41,10 +41,9 @@ def compare_pdf_content(pdf1_text, pdf2_text):
     #prompt = f"""Compare the content of two PDFs and share the few Similarities and Differences in the documents:\n\nPDF 1:\n{pdf1_text}\n\nPDF 2:\n{pdf2_text}"""
     prompt = f"""Compare the content of two PDFs and share the Differences from both the documents:\n\nPDF 1:\n{pdf1_text}\n\nPDF 2:\n{pdf2_text}"""
     
-    #load_dotenv()
-    api_key=st.secrets["OPENAI_API_KEY"]
     # Set up your OpenAI API key
-    openai.api_key = api_key
+
+    openai.api_key = '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'
     
     # Make a request to GPT-3
     response = openai.Completion.create(
