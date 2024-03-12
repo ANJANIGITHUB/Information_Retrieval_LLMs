@@ -35,6 +35,9 @@ from langchain.prompts import PromptTemplate
 from time import perf_counter
 import numpy as np
 import nltkmodules
+nltk.download('wordnet')
+nltk.download('punkt')
+nltk.download('stopwords')
 
 #import comparepdfs
 
