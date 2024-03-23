@@ -1,9 +1,9 @@
-#Chatbot for Information Retrival
+#Information Retrival Application
 
 # Name                 : Anjani Kumar
 # BITS ID              : 2021SC04645 
 # Date                 : 09/12/2023  
-# Dissertation Title   : Information Retrieval Chat Bot Using Generative AI & LLMs
+# Dissertation Title   : Information Retrieval Application Using Generative AI & LLMs
 
 #Import all the required libraries
 
@@ -34,10 +34,6 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
 from time import perf_counter
 import numpy as np
-import nltkmodules
-nltk.download('wordnet')
-nltk.download('punkt')
-nltk.download('stopwords')
 
 #import comparepdfs
 
@@ -71,14 +67,14 @@ def get_vector_store(text_chunks):
 def start_conversation():
 
     prompt_template = """You are expert in reading and understanding PDF documents.Read the uploaded documents
-    carefully and answer the questions asked by users.Please do not give wrong answers\n\n
+    carefully and answer the questions asked by users.Please do not give wrong answers.Return Result in Proper format\n\n
     Context:\n {context}?\n
     Question: \n{question}\n
 
     Answer:
     """
 
-    model = ChatGoogleGenerativeAI(model="gemini-pro",temperature=0.5)
+    model = ChatGoogleGenerativeAI(model="gemini-pro",temperature=0.2)
 
     prompt = PromptTemplate(template = prompt_template, input_variables = ["context", "question"])
     chain = load_qa_chain(model, chain_type="stuff", prompt=prompt)
@@ -173,8 +169,11 @@ def calculate_bleu_score(reference, candidate):
 #Questions for Performance Calculations
 bleuscore=0
 question1="Who are the founders of Maersk?"
-question2="Which years did Regulation violations and contract fraud happened?"
-question3="What all are the Maersk products?"
+question2="When was Svitzer founded?"
+question3="What all are the Maersk products"
+question4="What is streamlit ?"
+question5="what is PCA?"
+
 
 #Define main function
 def main():
@@ -262,7 +261,7 @@ def main():
             st.write(f"Bleu Score for this question is {bleu_score}")
 
           elif bleuscore==1 and user_question==question2:
-            actual_answer = "2010 and 2014"
+            actual_answer = "1833"
             bleu_score = calculate_bleu_score(actual_answer, response)
             st.subheader("Bleu Score")
             st.write(f"Bleu Score for this question is {bleu_score}")
@@ -271,6 +270,26 @@ def main():
             actual_answer = """Maerk Products are Container shipping and terminals, logistics and
                                     freight forwarding, ferry and tanker transport,
                                     semi-submersible drilling rigs and FPSOs"""
+            bleu_score = calculate_bleu_score(actual_answer, response)
+            st.subheader("Bleu Score")
+            st.write(f"Bleu Score for this question is {bleu_score}")
+          elif bleuscore==1 and user_question==question4:
+            actual_answer = """Streamlit is an open-source library that allows us to unique
+                              web apps for Machine Learning and Data Science projects fast
+                              and efficient.With this framework, you can easily
+                              build interactive visualization plots, models, and dashboards
+                              without having a worry about the underlying web framework
+                              or deployment infrastructure used in the backend."""
+            bleu_score = calculate_bleu_score(actual_answer, response)
+            st.subheader("Bleu Score")
+            st.write(f"Bleu Score for this question is {bleu_score}")
+          elif bleuscore==1 and user_question==question5:
+            actual_answer = """PCA is a powerful decomposition technique; it allows one to break down a highly
+                               multivariate dataset into a set of orthogonal components. When taken together in
+                               sufficient number, these components can explain almost all of the dataset's variance.
+                               In essence, these components deliver an abbreviated description of the dataset. PCA
+                               has a broad set of applications and its extensive utility makes it well worth our time
+                               to cover."""
             bleu_score = calculate_bleu_score(actual_answer, response)
             st.subheader("Bleu Score")
             st.write(f"Bleu Score for this question is {bleu_score}")
